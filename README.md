@@ -20,9 +20,10 @@
 Напишите SQL-запрос, который выведет топ 10 самых популярных услуг с указанием количества оказаний.
 
 ```sql
-SELECT service, COUNT(*) AS svc_count
-FROM treatments
-GROUP BY service
+SELECT s.service_name, COUNT(*) AS svc_count
+FROM treatments t
+INNER JOIN services s on s.service_id = t.treatment_id
+GROUP BY s.service_name
 ORDER BY svc_count DESC
 LIMIT 10;
 ```
